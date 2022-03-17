@@ -8,6 +8,5 @@ Rails.application.routes.draw do
   post 'login' => 'user_sessions#create'
   delete 'logout' => 'user_sessions#destroy', as: :logout
   get 'mypage' => 'homes#mypage'
-
   resources :users, only: %i[new create]
 end
