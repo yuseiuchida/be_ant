@@ -1,4 +1,20 @@
-<h1>THIS IS MYPAGE</h1>
-<ul>
-	<li><%= link_to "目標を設定する", goals_path %></li>
-</ul>
+<h1 class="page-title-text">マイページ</h1>
+<div class="container">
+	<button type="button" class="btn btn-link">
+		<%= link_to "目標を設定する", new_goal_path %>
+	</button>
+</div>
+<div class="container">
+	<% @goals.each do |goal| %>
+		<div class="my-goals">
+			<h3><%= goal.title %></h3>
+			<p>アリとキリギリス</p>
+			<p>投稿数： <%= @records.where(goal_id: goal.id).count %></p>
+			<p>アリ： <%= @records.where(goal_id: goal.id).where(bug_status: "アリ").count %></p>
+			<p>キリギリス： <%= @records.where(goal_id: goal.id).where(bug_status: "キリギリス").count %></p>
+			<h6><%= link_to "詳細", goal_path(goal) %></h6>
+			<h6><%= link_to "アクションを投稿する", new_record_path %></h6>
+			
+		</div>
+	<% end %>
+</div>
