@@ -1,24 +1,44 @@
-# README
+## どんなサービス？（３行）
+コツコツ目標に向かって日々頑張っている人が
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+周りの人もどれだけ頑張れているのか知りたい時に
 
-Things you may want to cover:
+自分の頑張りが周囲と比べてどれだけのものか直感で分かるサービスです
 
-* Ruby version
+## メインターゲットのユーザー
+- 日々目標に向かって努力している全ての人
 
-* System dependencies
+- 頑張ると計画してもなかなか実現できず苦労している人
 
-* Configuration
+- 他の人がどれだけ頑張っているのか知りたい人
 
-* Database creation
+## 実施予定の機能
+#### [MVP]  
 
-* Database initialization
+1. 自分の日々の積み重ねを記録する機能
 
-* How to run the test suite
+2. 自分の頑張り度をグラフで表記する機能
 
-* Services (job queues, cache servers, search engines, etc.)
+3. 他の人の頑張り度を閲覧できる機能
 
-* Deployment instructions
+## なぜこのサービスを作りたいのか？
+- 自分が頑張りが他の人と比べてどれだけの熱量なのか見てみたい
 
-* ...
+- アリとキリギリスならアリになりたい
+
+## スケジュール
+企画〜技術調査：3/15〆切
+
+README〜ER図作成：3/16
+
+〆切 メイン機能実装：3/16 - 3/20
+
+β版をRUNTEQ内リリース（MVP）：3/25〆切
+
+本番リリース：3月下旬
+
+## 画面遷移図
+
+## ER図
+https://drive.google.com/file/d/1TxD5s8sbL16jlBKiLuLoX7tcXaQkolzi/view?usp=sharing
+[![Image from Gyazo](https://i.gyazo.com/9b7c45cf0b6b7af5b676cd3c95da7cfd.png)](https://gyazo.com/9b7c45cf0b6b7af5b676cd3c95da7cfd)
