@@ -1,0 +1,11 @@
+<div class="actions">
+  <%= form_with model: @record, local: true do |f| %>
+    <%= f.label :goal_id, "目標" %>
+    <%= f.select :goal_id, @goals.map{ |goal| [goal.title, goal.id] } %>
+    <%= f.label :content, "アクション" %>
+    <%= f.text_field :content %>
+    <%= f.label :bug_status, "ステータス" %>
+    <%= f.select :bug_status, Record.bug_statuses.keys %>
+    <%= f.submit %>
+  <% end %>
+</div>

@@ -1,0 +1,11 @@
+<div class="actions">
+  <%= form_with model: @goal, local: true do |f| %>
+    <%= f.label :title, "目標" %>
+    <%= f.text_field :title %>
+    <%= f.label :kind_id, "カテゴリー" %>
+    <%= f.select :kind_id, @kinds.map{ |kind| [kind.name, kind.id] } %>
+    <%= f.label :due_day, "期限" %>
+    <%= f.date_select :due_day %>
+    <%= f.submit %>
+  <% end %>
+</div>
