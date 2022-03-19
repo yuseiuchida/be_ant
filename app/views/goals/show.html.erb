@@ -2,8 +2,10 @@
 <div class="container">
 	<div class="text-center">
 		<h3><%= @goal.status %></h3>
-		<% Goal::STATUSES.each do |status| %>
-			<%= link_to status, update_status_goal_path(@goal, status: status), method: :patch %>
+		<% if @goal.user.id == current_user.id %>
+			<% Goal::STATUSES.each do |status| %>
+				<%= link_to status, update_status_goal_path(@goal, status: status), method: :patch %>
+			<% end %>
 		<% end %>
 		<table class="table">
 			<thead>

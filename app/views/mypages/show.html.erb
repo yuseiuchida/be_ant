@@ -1,5 +1,4 @@
-<h1 class="page-title-text">マイページ</h1>
-<h1 class="text-center"><%= current_user.name %></h1>
+<h1 class="page-title-text"><%= @user.name %></h1>
 <div class="container">
 	<button type="button" class="btn btn-link">
 		<%= link_to "目標を設定する", new_goal_path %>
@@ -15,8 +14,9 @@
 			<p>アリ： <%= @records.where(goal_id: goal.id).where(bug_status: "アリ").count %></p>
 			<p>キリギリス： <%= @records.where(goal_id: goal.id).where(bug_status: "キリギリス").count %></p>
 			<h6><%= link_to "詳細", goal_path(goal) %></h6>
-			<h6><%= link_to "アクションを投稿する", new_record_path %></h6>
-			
+			<% if @user.id == current_user.id %>
+				<h6><%= link_to "アクションを投稿する", new_record_path %></h6>
+			<% end %>
 		</div>
 	<% end %>
 </div>

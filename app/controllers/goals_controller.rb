@@ -15,6 +15,7 @@ class GoalsController < ApplicationController
     @goal.update(status: params[:status])
     redirect_to goal_path
   end
+
   # GET /goals/new
   def new
     @goal = Goal.new

@@ -15,7 +15,17 @@
     <tbody>
       <% @records.each do |record| %>
         <tr>
-          <td><%= record.user.name %></td>
+          <% if record.user.id == current_user.id %>
+            <td>
+              <p><%= record.user.name %></p>
+            </td>
+          <% else %>
+            <td>
+              <%= link_to mypage_path(record.user.id) do %>
+                <p><%= record.user.name %></p>
+              <% end %>
+            </td>
+          <% end %>
           <td><%= record.content %></td>
           <td><%= record.bug_status %></td>
           <td><%= record.goal.kind.name %></td>
