@@ -7,6 +7,9 @@
         <th scope="col">アクション</th>
         <th scope="col">ステータス</th>
         <th scope="col">カテゴリー</th>
+        <th scope="col">ナイス</th>
+        <th scope="col"></th>
+
       </tr>
     </thead>
     <tbody>
@@ -16,6 +19,24 @@
           <td><%= record.content %></td>
           <td><%= record.bug_status %></td>
           <td><%= record.goal.kind.name %></td>
+          <td><%= record.reactions.count %></td>
+          <% if record.user_id == current_user.id %>
+            <td></td>
+          <% else %>
+            <% if Reaction.where(user_id: current_user.id, record_id: record.id).exists? %>
+              <td>
+                <%= link_to record_reaction_path(id: current_user.reactions.find_by(record_id: record.id).id, record_id: record.id), method: :delete  do%>
+                  <i class="fa-solid fa-hand-back-fist"></i>
+                <% end %>
+              </td>
+            <% else %>
+              <td>
+                <%= link_to record_reactions_path(record), method: :post do%>
+                  <i class="fa-regular fa-hand-back-fist"></i>
+                <% end %>
+              </td>
+            <% end %>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

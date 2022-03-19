@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', as: :login
   post 'login' => 'user_sessions#create'
   delete 'logout' => 'user_sessions#destroy', as: :logout
-  resources :records
+
+  resources :records do
+    resources :reactions, only: %i[create destroy]
+  end
   resources :goals do
     member do
       patch :update_status
