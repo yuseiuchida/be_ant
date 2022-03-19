@@ -10,6 +10,11 @@ class GoalsController < ApplicationController
   def show
   end
 
+  def update_status
+    @goal = Goal.find(params[:id])
+    @goal.update(status: params[:status])
+    redirect_to goal_path
+  end
   # GET /goals/new
   def new
     @goal = Goal.new
