@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 			render root_path
 		end
 	end
-
+	
 	private
 
 	def user_params
