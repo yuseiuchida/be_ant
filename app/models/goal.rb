@@ -5,4 +5,5 @@ class Goal < ApplicationRecord
 	validates :title, presence: true
 	validates :status, presence: true
 	STATUSES = ["奮闘中", "達成", "休憩中"]
+
 end

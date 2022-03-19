@@ -24,7 +24,7 @@ class RecordsController < ApplicationController
   def create
     @record = current_user.records.build(record_params)
     if @record.save
-      redirect_to records_path
+      redirect_to mypage_path(current_user)
     else
       redirect_to root_path
     end

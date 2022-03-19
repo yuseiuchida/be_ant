@@ -9,7 +9,8 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "bootstrap"
 import "../stylesheets/application.scss"
-import '@fortawesome/fontawesome-free/js/all'
+import "@fortawesome/fontawesome-free/js/all"
+import "chartkick/chart.js"
 
 Rails.start()
 Turbolinks.start()

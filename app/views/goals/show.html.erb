@@ -24,7 +24,11 @@
 			</tbody>
 		</table>
 	</div>
+	<br>
+	<%= pie_chart [["アリ", @ant.count],["キリギリス", @grasshopper.count]],
+		colors: ["#f4a460", "#6b8e23"],
+		legend: false %>
 </div>
 
-<%= link_to 'マイページへ戻る', mypage_path %>
+<%= link_to 'マイページへ戻る', mypage_path(id: @goal.user.id) %>
 
