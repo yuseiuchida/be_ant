@@ -8,6 +8,8 @@ class GoalsController < ApplicationController
 
   # GET /goals/1 or /goals/1.json
   def show
+    @ant = Record.where(goal_id: @goal.id, bug_status: 1)
+    @grasshopper = Record.where(goal_id: @goal.id, bug_status: 0)
   end
 
   def update_status
@@ -30,7 +32,7 @@ class GoalsController < ApplicationController
   def create
     @goal = current_user.goals.build(goal_params)
     if @goal.save
-      redirect_to mypage_path
+      redirect_to mypage_path(current_user)
     else
       redirect_to root_path
     end
