@@ -1,4 +1,5 @@
 <h1 class="page-title-text">マイページ</h1>
+<h1 class="text-center"><%= current_user.name %></h1>
 <div class="container">
 	<button type="button" class="btn btn-link">
 		<%= link_to "目標を設定する", new_goal_path %>
@@ -8,7 +9,8 @@
 	<% @goals.each do |goal| %>
 		<div class="my-goals">
 			<h3><%= goal.title %></h3>
-			<p>アリとキリギリス</p>
+			<h3><%= goal.status %></h3>
+			<h3>期限：<%= goal.due_day %></h3>
 			<p>投稿数： <%= @records.where(goal_id: goal.id).count %></p>
 			<p>アリ： <%= @records.where(goal_id: goal.id).where(bug_status: "アリ").count %></p>
 			<p>キリギリス： <%= @records.where(goal_id: goal.id).where(bug_status: "キリギリス").count %></p>

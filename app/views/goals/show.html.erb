@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
+<h1 class="page-title-text"><%= @goal.title %></h1>
+<div class="container">
+	<div class="text-center">
+		<h3><%= @goal.status %></h3>
+		<% Goal::STATUSES.each do |status| %>
+			<%= link_to status, update_status_goal_path(@goal, status: status), method: :patch %>
+		<% end %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">アクション</th>
+					<th scope="col">ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% Record.where(goal_id: @goal.id).each do |record| %>
+					<tr>
+						<td><%= record.content %></td>
+						<td><%= record.bug_status %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
 
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<%= link_to 'マイページへ戻る', mypage_path %>
+
