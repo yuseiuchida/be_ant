@@ -1,6 +1,6 @@
-<h1 class="page-title-text">今日のアクション</h1>
-
-<%= render 'form', record: @record %>
-
-<%= link_to 'みんなの投稿を見る', records_path %>
-<%= link_to 'マイページ', mypage_path(current_user) %>
+<h1 class="page-title-text">新規アクション</h1>
+<div class="container">
+	<div class="record-input-field">
+		<%= render 'form', record: @record %>
+	</div>
+</div>
