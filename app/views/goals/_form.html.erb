@@ -1,11 +1,22 @@
 <div class="actions">
   <%= form_with model: @goal, local: true do |f| %>
-    <%= f.label :title, "目標" %>
-    <%= f.text_field :title %>
-    <%= f.label :kind_id, "カテゴリー" %>
-    <%= f.select :kind_id, @kinds.map{ |kind| [kind.name, kind.id] } %>
-    <%= f.label :due_day, "期限" %>
-    <%= f.date_select :due_day %>
-    <%= f.submit %>
+    <div class="gl-iptx">
+      <%= f.label :title, "目標" %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="gl-iptx">
+      <%= f.label :kind_id, "カテゴリー" %>
+      <%= f.select :kind_id, @kinds.map{ |kind| [kind.name, kind.id] } %>
+    </div>
+    <div class="gl-iptx">
+      <%= f.label :due_day, "期限" %>
+      <%= f.date_select :due_day %>
+    </div>
+    <div class="gl-iptx">
+      <%= f.submit "設定する", class: "submit" %>
+    </div>
+  <% end %>
+  <%= link_to new_kind_path, method: :get do%>
+    <button type="button" class="link-button">カテゴリーを追加する</button>
   <% end %>
 </div>

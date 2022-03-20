@@ -1,5 +1,10 @@
 <h1 class="page-title-text">みんなの投稿</h1>
 <div class="container">
+  <div>
+    <%= link_to new_record_path do %>
+      <button type="button" class="btn btn-success">アクションを追加する</button>
+    <% end %>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -53,7 +58,4 @@
       <% end %>
     </tbody>
   </table>
-  <div>
-    <button type="button" class="btn btn-link"><%= link_to "アクションを投稿する", new_record_path %></button>
-  </div>
 </div>

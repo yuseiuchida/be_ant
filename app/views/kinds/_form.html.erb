@@ -1,7 +1,14 @@
 <div class="actions">
   <%= form_with model: @kind, local: true do |f| %>
-    <%= f.label :name, "カテゴリー" %>
-    <%= f.text_field :name %>
-    <%= f.submit %>
+    <div class="kd-iptx">
+      <%= f.label :name, "カテゴリー" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="kd-iptx">
+      <%= f.submit "追加", class: "submit" %>
+    </div>
+    <div class="kd-iptx">
+      <%= link_to "戻る", new_goal_path %>
+    </div>
   <% end %>
 </div>

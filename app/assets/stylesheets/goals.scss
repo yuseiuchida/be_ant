@@ -8,3 +8,65 @@
 .goal-information-chart {
 	background-color: rgb(240, 253, 182);
 }
+.goal-input-field {
+	background-color: rgb(185, 243, 138);
+	width: 60%;
+	height: 280px;
+	border-radius: 6px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.submit {
+	border:none;
+  color:#fff;
+  display:block;
+  margin:0 200px;
+  text-align:center;
+  background:#0f9926;
+  padding:7px 70px;
+  border-radius: 17px;
+  cursor: pointer;
+}
+form div{
+  padding: 10px 20px;
+}
+label {
+	display:block;
+  float:left;
+  width:200px;
+  color:rgb(0, 0, 0);
+}
+#goal_title, #goal_kind_id {
+	border:0px;
+  padding: 8px;
+	width: 300px;
+  color: #000;
+  background: #F5F5F5;
+  border-radius: 6px;
+}
+
+$goal_numbers: 1i, 2i, 3i;
+@each $goal_number in $goal_numbers {
+	#goal_due_day_#{$goal_number} {
+		border:0px;
+		padding: 8px;
+		width: 100px;
+		color: #000;
+		background: #F5F5F5;
+		border-radius: 6px;
+	}
+}
+
+.link-button {
+	border:none;
+  color:#0f0f0f;
+  display:block;
+  margin-left: auto;
+	margin-right: auto;
+  text-align:center;
+  background:#dde021;
+  padding:7px 70px;
+  border-radius: 17px;
+	width: 300px;
+}
