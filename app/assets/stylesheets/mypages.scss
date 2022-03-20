@@ -1,3 +1,44 @@
 // Place all the styles related to the mypages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+%mypage-status {
+	background-color: white;
+	width: 100%;
+	height: 450px;
+	text-align: center;
+	margin-top: 50px;
+	padding-top: 10px;
+}
+
+%mypage-contents {
+	float: left;
+	width: 60%;
+	text-align: center;
+	padding-top: 20px;
+}
+
+%mypage-piechart {
+	float: right;
+	width: 40%;
+	padding-left: 50px;
+}
+
+.mypage-status {
+	background-color: bisque;
+	@extend %mypage-status
+}
+.mypage-status-contents {
+	@extend %mypage-contents
+}
+.mypage-status-piechart {
+	@extend %mypage-piechart
+}
+.my-goals {
+	@extend %mypage-status
+}
+.my-goals-contents {
+	@extend %mypage-contents
+}
+.my-goals-piechart {
+	@extend %mypage-piechart
+}

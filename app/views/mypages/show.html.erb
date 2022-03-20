@@ -1,27 +1,46 @@
 <h1 class="page-title-text"><%= @user.name %></h1>
 <div class="container">
-	<button type="button" class="btn btn-link">
-		<%= link_to "目標を設定する", new_goal_path %>
-	</button>
-</div>
-<div class="container">
+	<div class="mypage-status">
+		<h1>ステータス</h1>
+		<div class="mypage-status-contents">
+			<h3>設定した目標：<%= @user.goals.count %>件</h3>
+			<h3>達成した目標：<%= @user.goals.where(status: "達成").count %>件</h3>
+			<h3>アリ度：<%= (@ant.count.fdiv(@records.count).round(2)*100).to_i %>%</h3>
+			<%= link_to new_goal_path, class: "setting_goals" do %>
+				<button type="button" class="btn btn-secondary">目標を設定する</button>
+			<% end %>
+		</div>
+		<div class="mypage-status-piechart">
+			<%= pie_chart [["アリ", @ant.count],["キリギリス", @grasshopper.count]],
+					colors: ["#f4a460", "#6b8e23"],
+					legend: false,
+					width: "300px" %>
+		</div>
+	</div>
 	<% @goals.each do |goal| %>
 		<div class="my-goals">
-			<h3><%= goal.title %></h3>
-			<h3><%= goal.status %></h3>
-			<h3>期限：<%= goal.due_day %></h3>
-			<h3>残り：<%= (goal.due_day - Date.today).to_i %>日</h3>
-			<p>投稿数： <%= @records.where(goal_id: goal.id).count %></p>
-			<%= pie_chart [["アリ", @ant.where(goal_id: goal.id).count],["キリギリス", @grasshopper.where(goal_id: goal.id).count]],
-				colors: ["#f4a460", "#6b8e23"],
-				legend: false %>
-			<% if @records.where(goal_id: goal.id).empty? %>
-				<p>データがありません</p>
+			<%= link_to goal_path(goal) do %>
+				<h1><%= goal.title %></h1>
 			<% end %>
-			<h6><%= link_to "詳細", goal_path(goal) %></h6>
-			<% if @user.id == current_user.id %>
-				<h6><%= link_to "アクションを投稿する", new_record_path %></h6>
-			<% end %>
+			<div class="my-goals-contents">
+				<h3><%= goal.status %></h3>
+				<h3>期限：<%= goal.due_day %></h3>
+				<h3>残り：<%= (goal.due_day - Date.today).to_i %>日</h3>
+				<% if @user.id == current_user.id %>
+					<%= link_to new_record_path do %>
+						<button type="button" class="btn btn-secondary">アクションを追加する</button>
+					<% end %>
+				<% end %>
+			</div>
+			<div class="my-goals-piechart">
+				<%= pie_chart [["アリ", @ant.where(goal_id: goal.id).count],["キリギリス", @grasshopper.where(goal_id: goal.id).count]],
+						colors: ["#f4a460", "#6b8e23"],
+						legend: false,
+						width: "300px" %>
+				<% if @records.where(goal_id: goal.id).empty? %>
+					<p>データがありません</p>
+				<% end %>
+			</div>
 		</div>
 	<% end %>
 </div>

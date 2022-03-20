@@ -3,7 +3,7 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      redirect_to mypage_path
+      redirect_to mypage_path(current_user)
     else
       render action: 'new'
     end
