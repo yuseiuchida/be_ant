@@ -1,34 +1,44 @@
 <h1 class="page-title-text"><%= @goal.title %></h1>
 <div class="container">
-	<div class="text-center">
-		<h3><%= @goal.status %></h3>
-		<% if @goal.user.id == current_user.id %>
-			<% Goal::STATUSES.each do |status| %>
-				<%= link_to status, update_status_goal_path(@goal, status: status), method: :patch %>
-			<% end %>
-		<% end %>
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">アクション</th>
-					<th scope="col">ステータス</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% Record.where(goal_id: @goal.id).each do |record| %>
-					<tr>
-						<td><%= record.content %></td>
-						<td><%= record.bug_status %></td>
-					</tr>
+	<div class="goal-information">
+		<div class="goal-information-table">
+			<h3><%= @goal.status %></h3>
+			<% if @goal.user.id == current_user.id %>
+				<% Goal::STATUSES.each do |status| %>
+					<%= link_to update_status_goal_path(@goal, status: status), method: :patch do %>
+						<button type="button" class="btn btn-success"><%= status %></button>
+					<% end %>
 				<% end %>
-			</tbody>
-		</table>
+			<% end %>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">アクション</th>
+						<th scope="col">ステータス</th>
+						<th scope="col">更新日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% Record.where(goal_id: @goal.id).each do |record| %>
+						<tr>
+							<td><%= record.content %></td>
+							<td><%= record.bug_status %></td>
+							<td><%= record.created_at.month %>/<%= record.created_at.day %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<%= link_to 'アクションを追加する', new_record_path %>
+		</div>
+		<div class="goal-information-chart">
+			<%= line_chart Record.where(goal_id: @goal.id).group(:bug_status).group_by_week(:created_at).count,
+					colors: ["#6b8e23", "#f4a460"],
+					legend: false,
+					min: 0,
+					max: 10 %>
+		</div>
+		<div>
+			<%= link_to 'マイページへ戻る', mypage_path(id: @goal.user.id) %>
+		</div>
 	</div>
-	<br>
-	<%= pie_chart [["アリ", @ant.count],["キリギリス", @grasshopper.count]],
-		colors: ["#f4a460", "#6b8e23"],
-		legend: false %>
 </div>
-
-<%= link_to 'マイページへ戻る', mypage_path(id: @goal.user.id) %>
-
