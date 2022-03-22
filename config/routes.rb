@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'user_sessions#destroy', as: :logout
   resources :mypages, only: %i[show]
   resources :users, only: %i[new create]
-  resources :records do
+  resources :records, only: %i[index new create destroy] do
     resources :reactions, only: %i[create destroy]
   end
   resources :goals do
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       patch :update_status
     end
   end
-  resources :kinds
+  resources :kinds, only: %i[index new create edit update]
   namespace :admin do
     root to: 'dashboards#index'
     get 'login', to: 'user_sessions#new'

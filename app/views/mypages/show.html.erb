@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<% @goals.each do |goal| %>
-		<div class="my-goals">
+		<div class="my-goals" id="<%= goal.status %>">
 			<%= link_to goal_path(goal) do %>
 				<h1><%= goal.title %></h1>
 			<% end %>

@@ -2,8 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .goal-information {
-	background-color: rgb(105, 209, 114);
 	text-align: center;
+}
+
+#奮闘中 {
+	background-color: #5287c3;
+}
+#達成 {
+	background-color: #f9fd00;
+}
+#休憩中 {
+	background-color: rgb(128, 128, 128);
 }
 .goal-information-chart {
 	background-color: rgb(240, 253, 182);
