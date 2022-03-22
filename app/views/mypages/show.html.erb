@@ -29,8 +29,8 @@
 				<h3>期限：<%= goal.due_day %></h3>
 				<h3>残り：<%= (goal.due_day - Date.today).to_i %>日</h3>
 				<% if @user.id == current_user.id %>
-					<%= link_to new_record_path do %>
-						<button type="button" class="btn btn-secondary">アクションを追加する</button>
+					<% unless goal.status == "達成" %>
+						<%= link_to 'アクションを追加する', new_record_path, class: "btn btn-success text-light" %>
 					<% end %>
 				<% end %>
 			</div>

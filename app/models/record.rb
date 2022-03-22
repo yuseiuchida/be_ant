@@ -5,4 +5,5 @@ class Record < ApplicationRecord
 
 	enum bug_status: { アリ: 1, キリギリス: 0 }
 	validates :content, :bug_status, presence: true
+	validates :goal_id, presence: true
 end
