@@ -22,6 +22,6 @@ Rails.application.routes.draw do
     resources :users, only: %i[index edit update show destroy]
     resources :records, only: %i[index edit update show destroy]
     resources :goals, only: %i[index edit update show destroy]
-    resources :kinds, only: %i[index edit update show destroy]
+    resources :kinds
   end
 end

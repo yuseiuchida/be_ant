@@ -1,0 +1,25 @@
+<div class="card card-primary">
+	<div class="card-body">
+		<%= form_with model: @goal, url: admin_goal_path(@goal), local: true do |f| %>
+			<div class="form-group">
+				<%= f.label :title, "タイトル", class: "form-group-label" %>
+				<%= f.text_field :title, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= f.label :status, "ステータス", class: "form-group-label" %>
+				<%= f.select :status, Goal::STATUSES, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= f.label :kind_id, "カテゴリー", class: "form-group-label" %>
+				<%= f.select :kind_id, @kinds.map{ |kind| [kind.name, kind.id] }, class: "form-control" %>
+			</div>
+			<div class="form-group">
+				<%= f.label :due_day, "期限", class: "form-group-label" %>
+				<%= f.date_select :due_day, class: "form-control" %>
+			</div>
+			<div class="text-center mt-3">
+				<%= f.submit "編集", class: 'btn btn-success btn-lg' %>
+			</div>
+		<% end %>
+	</div>
+</div>

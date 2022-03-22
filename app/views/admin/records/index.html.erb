@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Record</h1>
+            <h1>アクション一覧</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -14,6 +14,38 @@
 
     <!-- Main content -->
     <section class="content">
+			<div class="col-md-12">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">アクション</th>
+							<th scope="col">ステータス</th>
+							<th scope="col">カテゴリー</th>
+							<th scope="col">ユーザー</th>
+							<th scope="col">作成日時</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @records.each do |record| %>
+							<tr>
+								<td><%= record.id %></td>
+								<td><%= record.content %></td>
+								<td><%= record.bug_status %></td>
+								<td><%= record.goal.kind.name %></td>
+								<td><%= record.user.name %></td>
+								<td><%= record.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+								<td>
+									<%= link_to '詳細', admin_record_path(record), class: "btn btn-info" %>
+									<%= link_to '編集', edit_admin_record_path(record), class: "btn btn-success" %>
+									<%= link_to '削除', admin_record_path(record), class: "btn btn-danger", method: :delete %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</section>
   </div>
 </div>

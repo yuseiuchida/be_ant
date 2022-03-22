@@ -4,4 +4,5 @@ class Record < ApplicationRecord
 	has_many :reactions, dependent: :destroy
 
 	enum bug_status: { アリ: 1, キリギリス: 0 }
+	validates :content, :bug_status, presence: true
 end
