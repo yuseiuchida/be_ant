@@ -1,19 +1,26 @@
 <div class="actions">
-  <%= form_with model: @record, local: true do |f| %>
-    <div class="rec-iptx">
-      <%= f.label :goal_id, "目標" %>
-      <%= f.select :goal_id, @goals.map{ |goal| [goal.title, goal.id] } %>
-    </div>
-    <div class="rec-iptx">
-      <%= f.label :content, "アクション" %>
-      <%= f.text_field :content %>
-    </div>
-    <div class="rec-iptx">
-      <%= f.label :bug_status, "ステータス" %>
-      <%= f.select :bug_status, Record.bug_statuses.keys %>
-    </div>
-    <div class="rec-iptx">
-      <%= f.submit "追加", class: "submit" %>
+  <% if @goals.exists? %>
+    <%= form_with model: @record, local: true do |f| %>
+      <div class="rec-iptx">
+        <%= f.label :goal_id, "目標" %>
+        <%= f.select :goal_id, @goals.map{ |goal| [goal.title, goal.id] } %>
+      </div>
+      <div class="rec-iptx">
+        <%= f.label :content, "アクション" %>
+        <%= f.text_field :content %>
+      </div>
+      <div class="rec-iptx">
+        <%= f.label :bug_status, "ステータス" %>
+        <%= f.select :bug_status, Record.bug_statuses.keys %>
+      </div>
+      <div class="rec-iptx">
+        <%= f.submit "追加", class: "submit" %>
+      </div>
+    <% end %>
+  <% else %>
+    <div>
+      <strong>まだ目標を設定していません、先に目標を設定しましょう</strong>
+      <div><%= link_to '目標を設定する', new_goal_path, class: "btn btn-warning text-light" %></div>
     </div>
   <% end %>
 </div>

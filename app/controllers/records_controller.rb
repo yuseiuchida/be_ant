@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: %i[ show edit update destroy ]
-
+  before_action :set_goals, only: %i[new]
   # GET /records or /records.json
   def index
     @records = Record.all
@@ -9,7 +9,6 @@ class RecordsController < ApplicationController
   # GET /records/new
   def new
     @record = Record.new
-    @goals = Goal.where(user_id: current_user.id)
   end
 
   # POST /records or /records.json
@@ -18,7 +17,7 @@ class RecordsController < ApplicationController
     if @record.save
       redirect_to mypage_path(current_user)
     else
-      redirect_to root_path
+      render :new
     end
   end
 
@@ -37,5 +36,9 @@ class RecordsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def record_params
       params.require(:record).permit(:goal_id, :content, :bug_status)
+    end
+
+    def set_goals
+      @goals = current_user.goals.where.not(status: "達成")
     end
 end
