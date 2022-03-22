@@ -1,14 +1,10 @@
 <h1 class="page-title-text"><%= @goal.title %></h1>
 <div class="container">
-	<div class="goal-information">
+	<div class="goal-information" id="<%= @goal.status %>">
 		<div class="goal-information-table">
 			<h3><%= @goal.status %></h3>
 			<% if @goal.user.id == current_user.id %>
-				<% Goal::STATUSES.each do |status| %>
-					<%= link_to update_status_goal_path(@goal, status: status), method: :patch do %>
-						<button type="button" class="btn btn-success"><%= status %></button>
-					<% end %>
-				<% end %>
+				<%= render 'show' %>
 			<% end %>
 			<table class="table">
 				<thead>
@@ -16,6 +12,7 @@
 						<th scope="col">アクション</th>
 						<th scope="col">ステータス</th>
 						<th scope="col">更新日</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,6 +21,7 @@
 							<td><%= record.content %></td>
 							<td><%= record.bug_status %></td>
 							<td><%= record.created_at.month %>/<%= record.created_at.day %></td>
+							<td><%= link_to '削除', record_path(record), class: "btn btn-danger text-light", method: :delete %></td>
 						</tr>
 					<% end %>
 				</tbody>

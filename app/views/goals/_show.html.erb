@@ -1,0 +1,9 @@
+<% Goal::STATUSES.each do |status| %>
+	<% if status == "奮闘中" %>
+		<%= link_to status, update_status_goal_path(@goal, status: status), class: "btn btn-primary text-light", method: :patch %>
+	<% elsif status == "達成" %>
+		<%= link_to status, update_status_goal_path(@goal, status: status), class: "btn btn-warning text-light", method: :patch %>
+	<% else %>
+		<%= link_to status, update_status_goal_path(@goal, status: status), class: "btn btn-secondary text-light", method: :patch %>
+	<% end %>
+<% end %>
