@@ -5,7 +5,9 @@
 		<div class="mypage-status-contents">
 			<h3>設定した目標：<%= @user.goals.count %>件</h3>
 			<h3>達成した目標：<%= @user.goals.where(status: "達成").count %>件</h3>
-			<h3>アリ度：<%= (@ant.count.fdiv(@records.count).round(2)*100).to_i %>%</h3>
+			<% if @user.goals.exists? %>
+				<h3>アリ度：<%= (@ant.count.fdiv(@records.count).round(2)*100).to_i %>%</h3>
+			<% end %>
 			<%= link_to new_goal_path, class: "setting_goals" do %>
 				<button type="button" class="btn btn-secondary">目標を設定する</button>
 			<% end %>

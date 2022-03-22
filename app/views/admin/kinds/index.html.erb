@@ -6,55 +6,43 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Kind</h1>
+            <h1>カテゴリー一覧</h1>
+            <div class="mt-3">
+              <%= link_to 'カテゴリーを追加する', new_admin_kind_path, class: "btn btn-warning" %>
+            </div>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
-      <!-- Default box -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Title</h3>
-
-          <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
-        <div class="card-body">
-          Start creating your amazing application!
-        </div>
-        <!-- /.card-body -->
-        <div class="card-footer">
-          Footer
-        </div>
-        <!-- /.card-footer-->
-      </div>
-      <!-- /.card -->
-
-    </section>
-    <!-- /.content -->
+			<div class="col-md-12">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">カテゴリー名</th>
+							<th scope="col">作成日時</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @kinds.each do |kind| %>
+							<tr>
+								<td><%= kind.id %></td>
+								<td><%= kind.name %></td>
+								<td><%= kind.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+								<td>
+									<%= link_to '詳細', admin_kind_path(kind), class: "btn btn-info" %>
+									<%= link_to '編集', edit_admin_kind_path(kind), class: "btn btn-success" %>
+									<%= link_to '削除', admin_kind_path(kind), class: "btn btn-danger", method: :delete %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</section>
   </div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
